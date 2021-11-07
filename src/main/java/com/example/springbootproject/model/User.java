@@ -1,38 +1,36 @@
 package com.example.springbootproject.model;
 
 import lombok.*;
-import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 
 @Data
 @Builder
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Component
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String userName;
     private int age;
+    @ManyToMany
+    private Set<Product> products;
 
-    public User(String name) {
-        this.name = name;
-    }
+    public Product addProduct(Product product){
+        if(products.isEmpty())
+            products = new HashSet<>();
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        products.add(product);
+        return product;
     }
 }

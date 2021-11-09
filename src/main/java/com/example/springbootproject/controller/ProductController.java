@@ -24,8 +24,10 @@ public class ProductController {
 
     @PostMapping("/product")
     Product newProduct(@RequestBody Product product){
+        System.out.println("test");
         return productService.addProduct(product);
     }
+
     @PutMapping("/product/{id}")
     Product updateProduct(@RequestBody Product product, @PathVariable Long id){
         return productService.updateProduct(product, id);

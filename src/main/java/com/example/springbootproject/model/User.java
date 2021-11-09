@@ -33,4 +33,14 @@ public class User {
         products.add(product);
         return product;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", age=" + age +
+                ", products=" + products +
+                '}';
+    }
 }
